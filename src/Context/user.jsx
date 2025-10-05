@@ -76,11 +76,11 @@ export const UserProvider = ({ children }) => {
       }
     } catch (error) {
       console.log("error: ", error?.response);
-      toastError(
-        error?.response?.data?.message ||
-          error?.message ||
-          "Something Went Wrong"
-      );
+      // toastError(
+      //   error?.response?.data?.message ||
+      //     error?.message ||
+      //     "Something Went Wrong"
+      // );
     } finally {
       setIsLoading(false);
     }

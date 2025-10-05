@@ -7,7 +7,17 @@ import * as Yup from "yup";
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required("Name required *"),
-  password: Yup.string().required("Pasword is required *"),
+  password: Yup.string()
+    .required("Pasword is required *")
+    .test(
+      "strong-password",
+      "Pasword must contain one number, alpha and special char",
+      function (value) {
+        const regex =
+          /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+        return regex.test(value);
+      }
+    ),
 
   email: Yup.string().email("Invalid Email Id").required("Email Id required *"),
   confirmPassword: Yup.string()
