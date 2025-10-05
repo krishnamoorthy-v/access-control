@@ -1,16 +1,46 @@
-# React + Vite
+React Vite User Info Page
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project demonstrates a React Vite application that displays user information on a dedicated page. It handles session-based authentication and avoids using local storage by leveraging Redis on the backend. The frontend state management is handled using React Context and Axios for API requests.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Features
 
-## React Compiler
+Built with React + Vite for fast frontend development.
 
-The React Compiler is not enabled on this template. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Dashboard showing user data retrieved from the backend and shown component based on user admin/user.
 
-## Expanding the ESLint configuration
+Session-based authentication — no local storage used for storing user data.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Backend uses Redis to manage session data securely.
+
+React Context API is used for managing global user state on the frontend.
+
+Axios handles all API requests to the backend.
+
+
+Frontend: React, Vite, Axios, Context API
+
+Backend: Node.js/Express (or your backend), Redis for session storage
+
+Authentication: Session-based (no JWT/local storage)
+
+
+How It Works
+
+Backend:
+
+Stores session data in Redis.
+
+When a user logs in, a session is created and stored in Redis.
+
+Backend exposes APIs to fetch user info using session ID.
+
+Frontend:
+
+Uses React Context to hold the current user state.
+
+Fetches user info from backend using Axios on page load.
+
+Updates the Context state so all components consuming the user data can access it.
+
+No sensitive information is stored in local storage; all data comes from the session via backend.
